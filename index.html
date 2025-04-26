@@ -1,230 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Guess The Number Game</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      flex-direction: column;
-      color: white;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess The Number Game</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-image: url(coverpage_37\ guess.webp);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        color: white;
+      }
 
-    .game-container {
-      background-color: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      width: 300px;
-      display: none;
-      color: #333;
-    }
-
-    h1 {
-      color: #333;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-
-    input[type="number"] {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    #guessBtn {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    #guessBtn:hover {
-      background-color: #45a049;
-    }
-
-    #restartBtn {
-      background-color: #f44336;
-      color: white;
-    }
-
-    #restartBtn:hover {
-      background-color: #d73833;
-    }
-
-    #startBtn {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      background-color: #6200ea;
-      color: white;
-      cursor: pointer;
-      margin-bottom: 20px;
-    }
-
-    #message {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #222;
-      min-height: 24px;
-      transition: all 0.3s ease;
-    }
-
-    .success {
-      color: #4CAF50;
-    }
-
-    .error {
-      color: #f44336;
-    }
-
-    .warning {
-      color: #ff9800;
-    }
-
-    .note {
-      font-size: 13px;
-      color: #777;
-      margin-top: 10px;
-    }
-
-    /* 📱 Media Query for screens 600px and up */
-    @media screen and (min-width: 600px) {
       .game-container {
-        width: 400px;
-        padding: 40px;
+        background-color: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+        display: none;
+        color: #333;
       }
 
       h1 {
-        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
       }
 
       input[type="number"] {
-        font-size: 18px;
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 16px;
       }
 
       button {
-        font-size: 18px;
-        padding: 12px;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #guessBtn {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      #guessBtn:hover {
+        background-color: #45a049;
+      }
+
+      #restartBtn {
+        background-color: #f44336;
+        color: white;
+      }
+
+      #restartBtn:hover {
+        background-color: #d73833;
       }
 
       #startBtn {
-        font-size: 20px;
-        padding: 18px 36px;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        background-color: #7546b7;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 20px;
       }
 
-      .note {
-        font-size: 14px;
+      #startBtn:hover {
+        background-color: black;
+        transition-duration: 2s;
       }
 
       #message {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #222;
+        min-height: 24px;
+        transition: all 0.3s ease;
+      }
+
+      .success {
+        color: #4caf50;
+      }
+
+      .error {
+        color: #f44336;
+      }
+
+      .warning {
+        color: #ff9800;
+      }
+
+      .note {
+        font-size: 13px;
+        color: #777;
+        margin-top: 10px;
+      }
+
+      #triesLeft {
         font-size: 16px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <button onclick="initializeGame()" id="startBtn">Start Game</button>
-
-  <div class="game-container">
-    <h1>Guess the Number</h1>
-    <input type="number" id="guess" placeholder="Enter a number (1 - 100)" />
-    <button onclick="takeUserGuess()" id="guessBtn">Submit Guess</button>
-    <button onclick="gameStart()" id="restartBtn">Restart Game</button>
-    <div id="message"></div>
-    <p class="note">You have 6 tries. Good luck!</p>
-  </div>
-
-  <script>
-    const MAX_TRIES = 6;
-    let hasUserWon = false;
-    let RANDOM_GUESS = 0;
-    let user_trial = 0;
-
-    function initializeGame() {
-      document.getElementById("startBtn").style.display = "none";
-      document.querySelector(".game-container").style.display = "block";
-      gameStart();
-    }
-
-    function gameStart() {
-      RANDOM_GUESS = Math.floor(Math.random() * 100);
-      hasUserWon = false;
-      user_trial = 0;
-
-      document.getElementById("guess").disabled = false;
-      document.getElementById("guessBtn").disabled = false;
-      document.getElementById("guess").value = "";
-      showMessage("New game started! Make a guess.", "warning");
-      console.log("Secret number is", RANDOM_GUESS); 
-    }
-
-    function takeUserGuess() {
-      if (hasUserWon) {
-        showMessage("Game already won!", "success");
-        document.getElementById("guess").value = "";
-        return;
+        color: #222;
+        margin-top: 10px;
       }
 
-      const userGuess = Number(document.getElementById("guess").value);
-      document.getElementById("guess").value = "";
-
-      if (userGuess < 1 || userGuess > 100 || isNaN(userGuess)) {
-        showMessage("Please enter a valid number between 1 and 100.", "error");
-        return;
-      }
-
-      if (user_trial < MAX_TRIES) {
-        if (userGuess === RANDOM_GUESS) {
-          showMessage("🎉 CONGRATULATIONS!! You WIN", "success");
-          hasUserWon = true;
-          endGame();
-          return;
-        } else if (userGuess < RANDOM_GUESS) {
-          showMessage("Too LOW! Try again.", "warning");
-        } else {
-          showMessage("Too HIGH! Try again.", "warning");
+      /* 📱 Media Query for screens 600px and up */
+      @media screen and (min-width: 600px) {
+        .game-container {
+          width: 400px;
+          padding: 40px;
         }
 
-        user_trial += 1;
+        h1 {
+          font-size: 28px;
+        }
+
+        input[type="number"] {
+          font-size: 18px;
+        }
+
+        button {
+          font-size: 18px;
+          padding: 12px;
+        }
+
+        #startBtn {
+          font-size: 20px;
+          padding: 18px 36px;
+        }
+
+        .note {
+          font-size: 14px;
+        }
+
+        #message {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 onclick="initializeGame()" id="startBtn">Start Game</h1>
+
+    <div class="game-container">
+      <h1>Guess the Number</h1>
+      <input type="number" id="guess" placeholder="Enter a number (1 - 100)" />
+      <button onclick="takeUserGuess()" id="guessBtn">Submit Guess</button>
+      <button onclick="gameStart()" id="restartBtn">Restart Game</button>
+      <div id="message"></div>
+      <p class="note">You have 6 tries. Good luck!</p>
+      <div id="triesLeft">Tries Left: 6</div>
+      <!-- Tries left displayed here -->
+    </div>
+
+    <script>
+      const MAX_TRIES = 6;
+      let hasUserWon = false;
+      let RANDOM_GUESS = 0;
+      let user_trial = 0;
+
+      function initializeGame() {
+        document.getElementById("startBtn").style.display = "none";
+        document.querySelector(".game-container").style.display = "block";
+        gameStart();
       }
 
-      if (user_trial === MAX_TRIES && !hasUserWon) {
-        showMessage(`😞 Game Over! The number was ${RANDOM_GUESS}`, "error");
-        endGame();
+      function gameStart() {
+        RANDOM_GUESS = Math.floor(Math.random() * 100) + 1; // Adjusted to make sure it’s between 1 and 100
+        hasUserWon = false;
+        user_trial = 0;
+
+        document.getElementById("guess").disabled = false;
+        document.getElementById("guessBtn").disabled = false;
+        document.getElementById("guess").value = "";
+        showMessage("New game started! Make a guess.", "warning");
+
+        // Reset tries left on game start
+        updateTriesDisplay();
+
+        console.log("Secret number is", RANDOM_GUESS);
       }
-    }
 
-    function endGame() {
-      document.getElementById("guess").disabled = true;
-      document.getElementById("guessBtn").disabled = true;
-    }
+      function takeUserGuess() {
+        if (hasUserWon) {
+          showMessage("Game already won!", "success");
+          document.getElementById("guess").value = "";
+          return;
+        }
 
-    function showMessage(msg, type) {
-      const messageDiv = document.getElementById("message");
-      messageDiv.textContent = msg;
-      messageDiv.className = type;
-    }
-  </script>
-</body>
+        const userGuess = Number(document.getElementById("guess").value);
+        document.getElementById("guess").value = "";
+
+        if (userGuess < 1 || userGuess > 100 || isNaN(userGuess)) {
+          showMessage(
+            "Please enter a valid number between 1 and 100.",
+            "error"
+          );
+          return;
+        }
+
+        if (user_trial < MAX_TRIES) {
+          if (userGuess === RANDOM_GUESS) {
+            showMessage("🎉 CONGRATULATIONS!! You WIN", "success");
+            hasUserWon = true;
+            endGame();
+            return;
+          } else if (userGuess < RANDOM_GUESS) {
+            showMessage("Too LOW! Try again.", "warning");
+          } else {
+            showMessage("Too HIGH! Try again.", "warning");
+          }
+
+          user_trial += 1;
+
+          // Update tries left after each guess
+          updateTriesDisplay();
+        }
+
+        if (user_trial === MAX_TRIES && !hasUserWon) {
+          showMessage(`😞 Game Over! The number was ${RANDOM_GUESS}`, "error");
+          endGame();
+        }
+      }
+
+      function updateTriesDisplay() {
+        const triesLeft = MAX_TRIES - user_trial;
+        document.getElementById(
+          "triesLeft"
+        ).textContent = `Tries Left: ${triesLeft}`;
+      }
+
+      function endGame() {
+        document.getElementById("guess").disabled = true;
+        document.getElementById("guessBtn").disabled = true;
+      }
+
+      function showMessage(msg, type) {
+        const messageDiv = document.getElementById("message");
+        messageDiv.textContent = msg;
+        messageDiv.className = type;
+      }
+    </script>
+  </body>
 </html>
